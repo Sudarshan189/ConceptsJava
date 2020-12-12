@@ -20,9 +20,7 @@ public class NameService {
 
     public void printNames(List<Name> nameList) {
         nameList.stream()
-                .filter(name -> {
-                    return name.getLastName().equals("Shanbhag");
-                })
+                .filter(name -> name.getLastName().equals("Shanbhag"))
                 .forEach(name -> {
                     System.out.println(name.getFirstName() + " "+ name.getLastName());
                 });
@@ -31,6 +29,15 @@ public class NameService {
     public boolean checkMatch(List<Name> nameList, String keyword) {
        return nameList.stream()
                 .allMatch(name -> name.getLastName().toUpperCase().equals(keyword.toUpperCase()));
+    }
+
+    public int checkReduce(List<Name> nameList) {
+        List<Integer> listInteger = new ArrayList<>();
+        listInteger.add(100);
+        listInteger.add(200);
+        listInteger.add(130);
+        int num = listInteger.stream().reduce(0, (total, number) -> total+number);
+        return num;
     }
 
     public void sortNames(List<Name> names) {
@@ -55,7 +62,9 @@ public class NameService {
 
         nameService.sortNames(names);
         nameService.coverttoUpperCase(names);
-        names.stream().forEach(name -> {System.out.println(name.getFirstName() + " "+ name.getLastName());});
-        System.out.println(result);
+        names.stream().forEach(name -> System.out.println(name));
+
+        int integers = nameService.checkReduce(names);
+        System.out.println(integers);
     }
 }

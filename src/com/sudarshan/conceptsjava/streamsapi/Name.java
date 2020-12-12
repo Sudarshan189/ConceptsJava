@@ -1,13 +1,16 @@
 package com.sudarshan.conceptsjava.streamsapi;
 
 public class Name implements Comparable<Name> {
+    public static Integer counter =0;
     private String firstName;
     private String lastName;
-
+    private int index;
     public Name() {
     }
 
     public Name(String firstName, String lastName) {
+        index = getCounter()+1;
+        setCounter(index);
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -28,7 +31,21 @@ public class Name implements Comparable<Name> {
         this.lastName = lastName;
     }
 
+    public Integer getIndex() {
+        return index;
+    }
 
+    public void setIndex(Integer index) {
+        this.index = index;
+    }
+
+    public static Integer getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(Integer counter) {
+        Name.counter = counter;
+    }
 
     @Override
     public int compareTo(Name o) {
@@ -38,5 +55,14 @@ public class Name implements Comparable<Name> {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Name{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", index=" + index +
+                '}';
     }
 }
